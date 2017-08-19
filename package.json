@@ -1,0 +1,24 @@
+{
+  "name": "node-pupeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Veitch",
+  "license": "ISC",
+  "engines": {
+    "node": "8.4.0"
+  },
+  "dependencies": {
+    "body-parser": "1.17.2",
+    "dotenv": "4.0.0",
+    "ejs": "2.5.7",
+    "express": "4.15.4",
+    "moment": "2.18.1",
+    "puppeteer": "0.9.0",
+    "serve-favicon": "2.4.3"
+  }
+}
