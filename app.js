@@ -165,12 +165,12 @@ function sleep(ms){
  }
 
 
-(async() => {
+/*(async() => {
  const browser = await puppeteer.launch({dumpio: true});
  //const page = await browser.newPage();
  //await page.goto('https://example.com');
  browser.close();
-})();
+})();*/
 
 /******************************** SERVER LISTEN *******************************/
 
