@@ -32,7 +32,7 @@ app.post('/screenshotv1', function (req, res) {
     res.json({error: 'Must provide a url in the query params.'});
   }
   const reqUrl = req.query.url;*/
-  console.log(req.body);
+  //console.log(req.body);
   const reqUrl = req.body.url;
 
 
@@ -164,6 +164,13 @@ function sleep(ms){
   })
  }
 
+
+(async() => {
+ const browser = await puppeteer.launch({dumpio: true});
+ //const page = await browser.newPage();
+ //await page.goto('https://example.com');
+ browser.close();
+})();
 
 /******************************** SERVER LISTEN *******************************/
 
