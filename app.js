@@ -44,8 +44,10 @@ app.post('/screenshotv1', function (req, res) {
 
     const browser = await puppeteer.launch({
       headless: true,
+      ignoreHTTPSErrors: true,
       executablePath: '/app/.apt/opt/google/chrome/chrome',
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--remote-debugging-port=9222']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      dumpio: true
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1280, height: 1024, deviceScaleFactor: 1});
@@ -90,8 +92,10 @@ app.post('/getscreenshot', function (req, res) {
 
     const browser = await puppeteer.launch({
       headless: true,
+      ignoreHTTPSErrors: true,
       executablePath: '/app/.apt/opt/google/chrome/chrome',
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--remote-debugging-port=9222']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      dumpio: true
     });
     console.log('browser ready');
     const page = await browser.newPage();
@@ -122,8 +126,10 @@ app.post('/getpdf', function (req, res) {
 
     const browser = await puppeteer.launch({
       headless: true,
+      ignoreHTTPSErrors: true,
       executablePath: '/app/.apt/opt/google/chrome/chrome',
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--remote-debugging-port=9222']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      dumpio: true
     });
     const page = await browser.newPage();
     await page.setViewport({
