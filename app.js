@@ -170,4 +170,5 @@ function sleep(ms){
 // Server Listen
 app.listen( port, function () {
   console.log( `\nApp server is running on ${root_url}:${port}\n` );
+  console.log('process.env:', process.env)
 });
