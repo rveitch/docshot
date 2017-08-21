@@ -92,7 +92,7 @@ app.post('/getscreenshot', function (req, res) {
     await page.goto(reqUrl, {waitUntil: 'networkidle'});
     //await page.pdf({path: 'hn.pdf', format: 'A4'});
     var innerHeight = await page.evaluate(_ => {return window.innerHeight}),
-        height = await page.evaluate(_ => {return document.body.clientHeight});
+      height = await page.evaluate(_ => {return document.body.clientHeight});
     await console.log(page.viewport());
     await page.screenshot({
       path: filePath,
@@ -136,11 +136,11 @@ app.post('/getpdf', function (req, res) {
       console.log(i);
     }
     /*console.log('Waiting for transfers...');
-    await page.waitForNavigation({
-      networkIdleTimeout: 15000,
-      waitUntil: 'networkidle',
-    });
-    console.log('Done.');*/
+     await page.waitForNavigation({
+     networkIdleTimeout: 15000,
+     waitUntil: 'networkidle',
+     });
+     console.log('Done.');*/
     var height = await page.evaluate(() => {
       return document.body.clientHeight;
     });
@@ -162,15 +162,8 @@ function sleep(ms){
   return new Promise(resolve=>{
     setTimeout(resolve,ms)
   })
- }
+}
 
-
-/*(async() => {
- const browser = await puppeteer.launch({dumpio: true});
- //const page = await browser.newPage();
- //await page.goto('https://example.com');
- browser.close();
-})();*/
 
 /******************************** SERVER LISTEN *******************************/
 

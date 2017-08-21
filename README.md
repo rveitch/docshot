@@ -17,3 +17,14 @@ https://elements.heroku.com/buildpacks/dwayhs/heroku-buildpack-chrome
 ```
 web: /app/.apt/usr/bin/google-chrome & node app.js
 ```
+/app/.apt/usr/bin/google-chrome: No such file or directory
+
+
+```
+const browser = await puppeteer.launch({
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+      ],
+    })
+```
