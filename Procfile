@@ -1,1 +1,1 @@
-web: /app/.apt/usr/bin/google-chrome & node app.js
+web: /app/.apt/opt/google/chrome/chrome & node app.js

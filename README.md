@@ -10,8 +10,7 @@ Node app for interacting with headless chrome for {reasons}.
 - Visit http://localhost:3000 in your browser.
 
 
-heroku create --buildpack https://github.com/dwayhs/heroku-buildpack-chrome.git
-https://elements.heroku.com/buildpacks/dwayhs/heroku-buildpack-chrome
+heroku create --buildpack https://github.com/heroku/heroku-buildpack-google-chrome
 
 ## Procfile
 ```
@@ -35,3 +34,5 @@ git commit -am 'rebuild' --allow-empty
 git push heroku master
 heroku config:unset NODE_MODULES_CACHE
 ```
+
+cd node-projects/node-puppeteer
