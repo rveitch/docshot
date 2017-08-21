@@ -1,5 +1,5 @@
-# [Project Name Goes Here]
-(description)
+# Node-Puppeteer
+Node app for interacting with headless chrome for {reasons}.
 
 ## Local Setup
 - `$ git clone https://github.com/rveitch/docraptor-logs.git`
@@ -12,3 +12,8 @@
 
 heroku create --buildpack https://github.com/dwayhs/heroku-buildpack-chrome.git
 https://elements.heroku.com/buildpacks/dwayhs/heroku-buildpack-chrome
+
+## Procfile
+```
+web: /app/.apt/usr/bin/google-chrome & node app.js
+```
