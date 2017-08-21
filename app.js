@@ -93,6 +93,7 @@ app.post('/getscreenshot', function (req, res) {
       executablePath: '/app/.apt/opt/google/chrome/chrome',
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--remote-debugging-port=9222']
     });
+    console.log('browser ready');
     const page = await browser.newPage();
     await page.setViewport({width: 1280, height: 1024, deviceScaleFactor: 1});
     await page.goto(reqUrl, {waitUntil: 'networkidle'});
