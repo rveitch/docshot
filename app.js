@@ -42,8 +42,11 @@ app.post('/screenshotv1', function (req, res) {
     var fileName = `${parseUrl.hostname}_${timestamp}.pdf`;
     var filePath = `./pdfs/${fileName}`;
 
-    const browser = await puppeteer.launch();
-    // const browser = await puppeteer.launch({headless: false}); See what the browser is doing.
+    const browser = await puppeteer.launch({
+      headless: true,
+      executablePath: '/app/.apt/opt/google/chrome/chrome',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
     await page.setViewport({width: 1280, height: 1024, deviceScaleFactor: 1});
     await page.goto(reqUrl, {waitUntil: 'networkidle'});
@@ -85,8 +88,11 @@ app.post('/getscreenshot', function (req, res) {
     var fileName = `${parseUrl.hostname}_${timestamp}.png`;
     var filePath = `./screenshots/${fileName}`;
 
-    const browser = await puppeteer.launch();
-    // const browser = await puppeteer.launch({headless: false}); See what the browser is doing.
+    const browser = await puppeteer.launch({
+      headless: true,
+      executablePath: '/app/.apt/opt/google/chrome/chrome',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
     await page.setViewport({width: 1280, height: 1024, deviceScaleFactor: 1});
     await page.goto(reqUrl, {waitUntil: 'networkidle'});
@@ -113,7 +119,11 @@ app.post('/getpdf', function (req, res) {
     var fileName = `${parseUrl.hostname}_${timestamp}.pdf`;
     var filePath = `./pdfs/${fileName}`;
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: true,
+      executablePath: '/app/.apt/opt/google/chrome/chrome',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
     await page.setViewport({
       width: 1440, // 1280
