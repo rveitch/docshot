@@ -1,5 +1,6 @@
 # Node-Puppeteer
 Node app for interacting with headless chrome for {reasons}.
+`npm install https://github.com/GoogleChrome/puppeteer/`
 
 ## Local Setup
 - `$ git clone https://github.com/rveitch/docraptor-logs.git`

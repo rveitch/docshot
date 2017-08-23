@@ -18,7 +18,7 @@
     "ejs": "2.5.7",
     "express": "4.15.4",
     "moment": "2.18.1",
-    "puppeteer": "0.9.0",
+    "puppeteer": "git+https://github.com/GoogleChrome/puppeteer.git",
     "serve-favicon": "2.4.3"
   }
 }
