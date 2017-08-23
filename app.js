@@ -45,7 +45,7 @@ app.post('/screenshotv1', function (req, res) {
     const browser = await puppeteer.launch({
       headless: true,
       ignoreHTTPSErrors: true,
-      executablePath: '/app/.apt/opt/google/chrome/chrome',
+      //executablePath: '/app/.apt/opt/google/chrome/chrome',
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       dumpio: true
     });
@@ -93,7 +93,7 @@ app.post('/getscreenshot', function (req, res) {
     const browser = await puppeteer.launch({
       headless: true,
       ignoreHTTPSErrors: true,
-      executablePath: '/app/.apt/opt/google/chrome/chrome',
+      //executablePath: '/app/.apt/opt/google/chrome/chrome',
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       dumpio: true
     });
@@ -127,7 +127,7 @@ app.post('/getpdf', function (req, res) {
     const browser = await puppeteer.launch({
       headless: true,
       ignoreHTTPSErrors: true,
-      executablePath: '/app/.apt/opt/google/chrome/chrome',
+      //executablePath: '/app/.apt/opt/google/chrome/chrome',
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       dumpio: true
     });

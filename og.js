@@ -6,8 +6,9 @@ const puppeteer = require('puppeteer');
 const browser = await puppeteer.launch({
   headless: true,
   ignoreHTTPSErrors: true,
-  //args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  //dumpio: true
+  //executablePath: '/app/.apt/opt/google/chrome/chrome',
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  dumpio: true
 });
 const page = await browser.newPage();
 await page.goto('https://coschedule.com', {waitUntil: 'networkidle'}); // https://coschedule.com, https://s.codepen.io/rveitch/debug/awQEOr

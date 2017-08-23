@@ -40,3 +40,5 @@ cd node-projects/node-puppeteer
 
 chrome --headless --disable-gpu --no-sandbox --dump-dom https://www.chromestatus.com/
 $GOOGLE_CHROME_BIN --headless --disable-gpu --no-sandbox --dump-dom https://www.chromestatus.com/
+
+`heroku ps:exec`
