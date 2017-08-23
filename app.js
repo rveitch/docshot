@@ -5,7 +5,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var moment = require('moment');
-const url = require('url');
+const URL = require('url');
 const puppeteer = require('puppeteer');
 
 dotenv.load();
@@ -26,6 +26,14 @@ app.get('/', function (req, res) {
 	res.render('index'); // Render an HTML page from an .ejs template
 });
 
+app.get('/url', function (req, res) {
+  var reqUrl = 'https://coschedule.com'
+  var parsedUrl = parseURL(reqUrl);
+  var targetUrl = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
+
+	res.json({targetUrl}); // Render an HTML page from an .ejs template
+});
+
 // PDF v1
 app.post('/screenshotv1', function (req, res) {
   /*if (!req.query.url) {
@@ -37,9 +45,10 @@ app.post('/screenshotv1', function (req, res) {
 
 
   (async () => {
-    var parseUrl = url.parse(reqUrl);
+    var parsedUrl = parseURL(reqUrl);
+    var targetUrl = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
     var timestamp = moment(Date.now()).format('MM_DD_YYYY__h_mm_ss_a'); // Screenshot_6_20_17__3_02_PM
-    var fileName = `${parseUrl.hostname}_${timestamp}.pdf`;
+    var fileName = `${parsedUrl.hostname}_${timestamp}.pdf`;
     var filePath = `./pdfs/${fileName}`;
 
     const browser = await puppeteer.launch({
@@ -51,7 +60,7 @@ app.post('/screenshotv1', function (req, res) {
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1280, height: 1024, deviceScaleFactor: 1});
-    await page.goto(reqUrl, {waitUntil: 'networkidle'});
+    await page.goto(targetUrl, {waitUntil: 'networkidle'});
     //await page.pdf({path: 'hn.pdf', format: 'A4'});
     var innerHeight = await page.evaluate(_ => {return window.innerHeight}),
         height = await page.evaluate(_ => {return document.body.clientHeight});
@@ -85,9 +94,10 @@ app.post('/getscreenshot', function (req, res) {
 
 
   (async () => {
-    var parseUrl = url.parse(reqUrl);
+    var parsedUrl = parseURL(reqUrl);
+    var targetUrl = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
     var timestamp = moment(Date.now()).format('MM_DD_YYYY__h_mm_ss_a'); // Screenshot_6_20_17__3_02_PM
-    var fileName = `${parseUrl.hostname}_${timestamp}.png`;
+    var fileName = `${parsedUrl.hostname}_${timestamp}.png`;
     var filePath = `./screenshots/${fileName}`;
 
     const browser = await puppeteer.launch({
@@ -100,7 +110,7 @@ app.post('/getscreenshot', function (req, res) {
     console.log('browser ready');
     const page = await browser.newPage();
     await page.setViewport({width: 1280, height: 1024, deviceScaleFactor: 1});
-    await page.goto(reqUrl, {waitUntil: 'networkidle'});
+    await page.goto(targetUrl, {waitUntil: 'networkidle'});
     //await page.pdf({path: 'hn.pdf', format: 'A4'});
     var innerHeight = await page.evaluate(_ => {return window.innerHeight}),
       height = await page.evaluate(_ => {return document.body.clientHeight});
@@ -119,9 +129,10 @@ app.post('/getpdf', function (req, res) {
   const reqUrl = req.body.url;
   var i;
   (async () => {
-    var parseUrl = url.parse(reqUrl);
+    var parsedUrl = parseURL(reqUrl);
+    var targetUrl = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
     var timestamp = moment(Date.now()).format('MM_DD_YYYY__h_mm_ss_a'); // Screenshot_6_20_17__3_02_PM
-    var fileName = `${parseUrl.hostname}_${timestamp}.pdf`;
+    var fileName = `${parsedUrl.hostname}_${timestamp}.pdf`;
     var filePath = `./pdfs/${fileName}`;
 
     const browser = await puppeteer.launch({
@@ -137,7 +148,7 @@ app.post('/getpdf', function (req, res) {
       height: 900, // 1024
       deviceScaleFactor: 1,
     });
-    await page.goto(reqUrl, { waitUntil: 'networkidle' });
+    await page.goto(targetUrl, { waitUntil: 'networkidle' });
     var innerHeight = await page.evaluate(_ => {
       return window.innerHeight;
     }), height = await page.evaluate(_ => {
@@ -181,11 +192,20 @@ function sleep(ms){
   })
 }
 
+function parseURL(url) {
+  const parsedURL = URL.parse(url);
+  if (parsedURL.protocol) {
+    return parsedURL;
+  }
+
+  // else, attempt to make a legit url by prefixing known good protocol //
+  return URL.parse(`http://${url}`);
+}
 
 /******************************** SERVER LISTEN *******************************/
 
 // Server Listen
 app.listen( port, function () {
   console.log( `\nApp server is running on ${root_url}:${port}\n` );
-  console.log('process.env:', process.env)
+  // console.log('process.env:', process.env)
 });
