@@ -47,6 +47,11 @@ app.post('/getscreenshot', function (req, res) {
       console.log('browser ready');
 
       const page = await browser.newPage();
+      page.on('error', (err) => {
+        console.error('Page Error: ', err);
+        //throw new Error(err);
+        return Promise.reject(new Error(err));
+      });
       await page.setViewport({width: 1280, height: 1024, deviceScaleFactor: 1});
       await page.goto(targetUrl, {waitUntil: 'networkidle'});
 
