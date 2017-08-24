@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Puppet PDF and Screenshot Example App</title>
+	<title>DocShot - Headless Chrome Screenshot Example App</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css" rel="stylesheet" />
 	<link href="//v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
 	<style>
@@ -18,14 +18,14 @@
 			<h4 class="form-signin-heading">Enter Site URL:</h4>
 			<div class="form-group">
 				<label for="url" class="sr-only">URL</label>
-		    <input id="url" class="form-control" type="text" placeholder="https://github.com/" name="url" required autofocus>
+		    <input id="url" class="form-control" type="text" value="https://github.com/" name="url" required autofocus>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Generate Screenshot</button>
 			</div>
 		</form>
 
-    <form action="/getpdf" method="post" class="form-signin">
+    <!-- <form action="/getpdf" method="post" class="form-signin">
 			<div class="form-group">
 				<label for="url" class="sr-only">URL</label>
 		    <input id="url" class="form-control" type="text" placeholder="https://github.com/" name="url" required autofocus>
@@ -33,7 +33,7 @@
 			<div class="form-group">
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Generate PDF</button>
 			</div>
-		</form>
+		</form> -->
 
     <p class="text-muted" style="text-align: center;">Some sites can take a wee bit to process, so be patient. 🙂</p>
 	</div>

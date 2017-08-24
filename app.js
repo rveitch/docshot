@@ -49,17 +49,10 @@ app.post('/getscreenshot', function (req, res) {
       const page = await browser.newPage();
       await page.setViewport({width: 1280, height: 1024, deviceScaleFactor: 1});
       await page.goto(targetUrl, {waitUntil: 'networkidle'});
-      console.log('Waiting for transfers...');
-       await page.waitForNavigation({
-       networkIdleTimeout: 15000,
-       waitUntil: 'networkidle',
-       });
-       console.log('Done.');
 
       var innerHeight = await page.evaluate(_ => {return window.innerHeight});
       var height = await page.evaluate(_ => {return document.body.clientHeight});
 
-      await console.log(page.viewport());
       await page.screenshot({
         path: filePath,
         fullPage: true,
@@ -68,6 +61,7 @@ app.post('/getscreenshot', function (req, res) {
 
       res.download(filePath, fileName);
     } catch (e) {
+      browser.close();
       res.json({error: e.message});
     }
   })();
@@ -99,6 +93,7 @@ app.post('/getpdf', function (req, res) {
         height: 900, // 1024
         deviceScaleFactor: 1,
       });
+      await console.log(page.viewport());
       await page.goto(targetUrl, { waitUntil: 'networkidle' });
 
       var innerHeight = await page.evaluate(_ => {
@@ -140,6 +135,7 @@ app.post('/getpdf', function (req, res) {
 
       res.download(filePath, fileName);
     } catch (e) {
+      browser.close();
       res.json({error: e.message});
     }
   })();
